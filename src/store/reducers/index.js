@@ -1,16 +1,20 @@
+// reduces
+
 const defaultState = {
-  list: []
+  list: [],
+  selectedEnv: ''
 }
 
 export default (state = defaultState, actions) => {
   console.log(defaultState, state, actions)
-
-  if (actions.type === 'GET_TABLE_DATA') {
-    state.list.push('a')
+const { type, selectedEnv} = actions
+  if (type === 'GET_TABLE_DATA') {
+    state.list.push('12')
     const newState = {
-      ...state
+      ...state,
+      selectedEnv
     }
-    console.log(newState)
+    // console.log(newState, actions)
     return newState
   }
   return state

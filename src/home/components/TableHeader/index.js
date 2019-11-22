@@ -18,12 +18,17 @@ class Header extends React.Component {
 
   handleChange = (value) => {
     console.log(value)
+    this.setState({
+      ...this.state,
+      defaultEnv: value
+    })
   }
 
 
   render() {
 
     const {defaultEnv} = this.state
+    console.log(defaultEnv, 'enc')
     const {handleGetTableData} = this.props
 
     return (
@@ -53,7 +58,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 
         handleGetTableData(type) {
-          // console.log(type, 'typeee')
+          console.log(type, 'typeee')
             dispatch(getTableData(type))
         }
 })

@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import {connect} from 'react-redux';
 import './index.scss'
 
+
 const columns = [
   {
     title: 'Name',
@@ -52,9 +53,7 @@ class TableContent extends React.Component {
   render() {
     return (
       <div className="table">
-        {
-          console.log(this.props, '9898')
-        }
+        <div>当前选择环境: {this.props.state.selectedEnv}</div>
         <Table columns={columns} dataSource={data} />
       </div>
     );
