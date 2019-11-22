@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button, Select } from 'antd';
-// import './index.scss';
-// import store from '../../../store';
+
 import {connect} from 'react-redux';
 import {getTableData} from '../../../store/actions'
-// import PropTypes from 'prop-types'
+import './index.scss';
 
 const { Option } = Select;
 
@@ -54,7 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 
         handleGetTableData(type) {
-          console.log(type, 'typeee')
+          // console.log(type, 'typeee')
             dispatch(getTableData(type))
         }
 })
