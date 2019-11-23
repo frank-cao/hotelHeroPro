@@ -11,16 +11,16 @@ import { fetchJson } from '../services';
 function* fetchUser(action) {
   try {
     const user = yield call(fetchJson, action.payload.userId);
-    console.log(user)
+    console.log(user, 'getRes')
     yield put({
       type: "USER_FETCH_SUCCEEDED",
-      user: user
+      user: user.data
     });
   } catch (e) {
-    yield put({
-      type: "USER_FETCH_FAILED",
-      message: e.message
-    });
+    // yield put({
+    //   type: "USER_FETCH_FAILED",
+    //   message: e.message
+    // });
   }
 }
 

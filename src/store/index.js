@@ -21,5 +21,5 @@ import mySaga from './saga'
  // 启动 saga
 sagaMiddleware.run(mySaga)
 // const store = createStore(reducer)
-
+console.log(store, 'store')
 export default store

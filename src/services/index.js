@@ -3,14 +3,19 @@
 const axios = require('axios');
 
 // mock
-export function fetchJson () {
+export function fetchJson() {
   return new Promise((resolve, reject) => {
     // console.log(axios, 'axios')
-    axios.get('api/list',{timeout: 300000}).then(res => {
-  console.log(res)
-      resolve(res.data)
-    }).catch((error) => {
-  console.log(error, 'error----')
-    })
-  })
+    axios
+      .get('/pms/list', {
+        timeout: 300000
+      })
+      .then(res => {
+        // console.log(res);
+        resolve(res);
+      })
+      .catch(error => {
+        console.log(error, 'error----');
+      });
+  });
 }

@@ -1,15 +1,13 @@
 // reduces
 
 const defaultState = {
-  list: [],
-  selectedEnv: ''
+  tableList: []
 }
 
 export default (state = defaultState, actions) => {
-  console.log(defaultState, state, actions)
+  // console.log(defaultState, state, actions)
 const { type, selectedEnv} = actions
   if (type === 'GET_TABLE_DATA') {
-    state.list.push('12')
     const newState = {
       ...state,
       selectedEnv
@@ -17,8 +15,11 @@ const { type, selectedEnv} = actions
     // console.log(newState, actions)
     return newState
   }
-  if (type === 'USER_FETCH_SUCCESS') {
-console.log('successReduce')
+  if (type === 'USER_FETCH_SUCCEEDED') {
+    console.log(actions, 'successReduce');
+    const { user = [] } = actions
+    state.tableList = user
+    return {...state}
   }
-  return state
+  return state;
 }

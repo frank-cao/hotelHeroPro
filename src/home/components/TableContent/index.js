@@ -6,22 +6,26 @@ import './index.scss'
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a>{text}</a>,
+    title: 'branch',
+    dataIndex: 'branch',
+    key: 'branch'
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'env',
+    dataIndex: 'env',
+    key: 'env'
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'time',
+    dataIndex: 'time',
+    key: 'time'
   },
-]
+  {
+    title: 'url',
+    dataIndex: 'url',
+    key: 'url'
+  }
+];
 
 const data = [{
     key: '1',
@@ -48,13 +52,17 @@ const data = [{
 
 class TableContent extends React.Component {
 
-
+  // constructor(props) {
+  //   super(props)
+  //   console.log(props, '-=-')
+  // }
 
   render() {
+    console.log(this.props, 'renderContent');
+    const { tableList } = this.props.state;
     return (
-      <div className="table">
-        <div>当前选择环境: {this.props.state.selectedEnv}</div>
-        <Table columns={columns} dataSource={data} />
+      <div className='table'>
+        <Table columns={columns} dataSource={tableList} />
       </div>
     );
   }

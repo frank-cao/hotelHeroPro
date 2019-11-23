@@ -4,7 +4,6 @@ import TableContent from './components/TableContent'
 import { Provider } from 'react-redux';
 import store from '../../src/store';
 import './index.scss';
-// import '~antd/dist/antd.css';
 
 
 class Home extends React.Component {

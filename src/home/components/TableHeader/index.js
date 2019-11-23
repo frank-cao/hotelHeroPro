@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Select } from 'antd';
 
 import {connect} from 'react-redux';
-import {getTableData} from '../../../store/actions'
+// import {getTableData} from '../../../store/actions'
 import './index.scss';
 
 const { Option } = Select;
@@ -14,6 +14,13 @@ class Header extends React.Component {
     this.state = {
       defaultEnv: ''
     };
+  }
+
+
+  componentDidMount () {
+     const { handleGetTableData } = this.props;
+    const { defaultEnv } = this.state;
+    handleGetTableData(defaultEnv);
   }
 
   handleChange = (value) => {
@@ -61,7 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
 
         handleGetTableData(type) {
 
-    console.log(dispatch, 'props')
+    // console.log(dispatch, 'props')
     dispatch({type: 'USER_FETCH_REQUESTED', payload: 'cyu'})
             // dispatch(getTableData(type))
         }
