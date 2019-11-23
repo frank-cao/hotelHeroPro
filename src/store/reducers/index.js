@@ -17,5 +17,8 @@ const { type, selectedEnv} = actions
     // console.log(newState, actions)
     return newState
   }
+  if (type === 'USER_FETCH_SUCCESS') {
+console.log('successReduce')
+  }
   return state
 }

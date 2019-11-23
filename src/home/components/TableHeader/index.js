@@ -17,6 +17,8 @@ class Header extends React.Component {
   }
 
   handleChange = (value) => {
+
+  
     console.log(value)
     this.setState({
       ...this.state,
@@ -58,8 +60,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 
         handleGetTableData(type) {
-          console.log(type, 'typeee')
-            dispatch(getTableData(type))
+
+    console.log(dispatch, 'props')
+    dispatch({type: 'USER_FETCH_REQUESTED', payload: 'cyu'})
+            // dispatch(getTableData(type))
         }
 })
 
