@@ -2,20 +2,32 @@
 
 const axios = require('axios');
 
-// mock
-export function fetchJson() {
+// 获取table数据
+export function getTableData() {
   return new Promise((resolve, reject) => {
-    // console.log(axios, 'axios')
     axios
       .get('/testPackage/list', {
-        timeout: 300000
+        timeout: 30000
       })
       .then(res => {
-        // console.log(res);
         resolve(res);
       })
       .catch(error => {
         console.log(error, 'error----');
       });
+  });
+}
+
+export function generateFile(params) {
+  // console.log(params, 'params');
+  const { env = '', branch = '' } = params;
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`/testPackage?env=${env}&branch=${branch}`, { timeout: 30000 })
+      .then(res => {
+        console.log(res);
+        resolve(res);
+      })
+      .catch(err => {});
   });
 }

@@ -1,14 +1,12 @@
 import React from 'react';
-import { Button, Select } from 'antd';
+import { Button, Select, Spin } from 'antd';
 
-import {connect} from 'react-redux';
-// import {getTableData} from '../../../store/actions'
+import { connect } from 'react-redux';
 import './index.scss';
 
 const { Option } = Select;
 
 class Header extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,35 +14,36 @@ class Header extends React.Component {
     };
   }
 
-
-  componentDidMount () {
-     const { handleGetTableData } = this.props;
-    const { defaultEnv } = this.state;
-    handleGetTableData(defaultEnv);
+  componentDidMount() {
+    const { handleGetTableData } = this.props;
+    // const { defaultEnv } = this.state;
+    handleGetTableData();
   }
 
-  handleChange = (value) => {
-
-  
-    console.log(value)
+  handleChange = value => {
+    console.log(value);
     this.setState({
       ...this.state,
       defaultEnv: value
-    })
-  }
+    });
+  };
 
+  handleChangeSpinStatus = () => {
+    const { handleGenerateBtn } = this.props;
+    const { defaultEnv } = this.state;
+    handleGenerateBtn(defaultEnv);
+  };
 
   render() {
-
-    const {defaultEnv} = this.state
-    console.log(defaultEnv, 'enc')
-    const {handleGetTableData} = this.props
+    const { defaultEnv } = this.state;
+    console.log(defaultEnv, 'enc');
 
     return (
-      <div className="header">
+      <div className='header'>
+        {/* <Spin spinning={spinStatus}></Spin> */}
         <Select
           style={{ width: 200 }}
-          placeholder="请选择打包环境"
+          placeholder='请选择打包环境'
           defaultValue={defaultEnv}
           onChange={this.handleChange}
         >
@@ -52,29 +51,37 @@ class Header extends React.Component {
           <Option value='release-test'>release-test</Option>
           <Option value='release-prod'>release-prod</Option>
         </Select>
-        <Button type="primary" className="search-btn" onClick={() => {handleGetTableData(defaultEnv)}}>生成</Button>
+        <Button
+          type='primary'
+          className='generate-btn'
+          onClick={() => {
+            this.handleChangeSpinStatus();
+          }}
+        >
+          生成
+        </Button>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    list: state.list
+    defaultState: state
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  handleGenerateBtn(env) {
+    console.log(env);
+    dispatch({ type: 'GENERATE_FILE', payload: { env, branch: 'master' } });
+  },
+
+  handleGetTableData() {
+    dispatch({ type: 'USER_FETCH_REQUESTED', payload: '' });
+    //  console.log(res)
   }
-}
+  // console.log(res)
+});
 
-const mapDispatchToProps = (dispatch) => ({
-
-        handleGetTableData(type) {
-
-    // console.log(dispatch, 'props')
-    dispatch({type: 'USER_FETCH_REQUESTED', payload: 'cyu'})
-            // dispatch(getTableData(type))
-        }
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

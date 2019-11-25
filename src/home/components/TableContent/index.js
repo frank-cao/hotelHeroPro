@@ -1,53 +1,51 @@
 import React from 'react';
 import { Table, Button } from 'antd';
-import {connect} from 'react-redux';
-import './index.scss'
-
+import { connect } from 'react-redux';
+import './index.scss';
 
 class TableContent extends React.Component {
-
   columns = [
-  {
-    title: 'branch',
-    dataIndex: 'branch',
-    key: 'branch'
-  },
-  {
-    title: 'env',
-    dataIndex: 'env',
-    key: 'env'
-  },
-  {
-    title: 'time',
-    dataIndex: 'time',
-    key: 'time'
-  },
-  {
-    title: 'url',
-    dataIndex: 'url',
-    key: 'url'
-  },
-  {
-    title: 'download',
-    dataIndex: 'download',
-    key: 'download',
-    render: (text, record, index) => (
-      <Button
-        type='primary'
-        className='download-btn'
-        onClick={() => this.handleDownloadBtn(record, index)}
-      >
-        下载
-      </Button>
-    )
-  }
-];
+    {
+      title: 'branch',
+      dataIndex: 'branch',
+      key: 'branch'
+    },
+    {
+      title: 'env',
+      dataIndex: 'env',
+      key: 'env'
+    },
+    {
+      title: 'time',
+      dataIndex: 'time',
+      key: 'time'
+    },
+    {
+      title: 'url',
+      dataIndex: 'url',
+      key: 'url'
+    },
+    {
+      title: 'download',
+      dataIndex: 'download',
+      key: 'download',
+      render: (text, record, index) => (
+        <Button
+          type='primary'
+          className='download-btn'
+          onClick={() => this.handleDownloadBtn(record, index)}
+        >
+          下载
+        </Button>
+      )
+    }
+  ];
 
   handleDownloadBtn = (record, index) => {
     // console.log(record, index, '====');
-    const host = 'http://192.168.90.134:7001'
-    const { url = '' } = record
-    window.location.href =  host + '' + url
+    const host = 'http://192.168.90.134:7001';
+    const { url = '' } = record;
+    window.location.href = host + '' + url;
   };
 
   render() {
@@ -61,15 +59,11 @@ class TableContent extends React.Component {
   }
 }
 
-
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // console.log(state, 'state---')
   return {
     state
-  }
-}
+  };
+};
 
-export default connect(
-  mapStateToProps
-)(TableContent)
+export default connect(mapStateToProps)(TableContent);
