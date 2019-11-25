@@ -39,11 +39,12 @@ function* GenerateFile (action) {
   }
 }
 
+
 /*
-  开始执行 dispatch USER_FETCH_REQUESTED  GENERATE_FILE action
+  开始执行 dispatch GET_TABLE_DATA  GENERATE_FILE action
 */
 function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", GetTableData);
+  yield takeEvery("GET_TABLE_DATA", GetTableData);
   yield takeEvery('GENERATE_FILE', GenerateFile);
 }
 

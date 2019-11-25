@@ -13,7 +13,7 @@ class Home extends React.Component {
       <div className="home">
         <Provider store={store} >
           <TableHeader></TableHeader>
-          <TableContent> </TableContent>
+          <TableContent></TableContent>
         </Provider>
       </div>
     );

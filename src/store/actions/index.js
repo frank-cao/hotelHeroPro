@@ -1,7 +1,7 @@
 
 // actions 同步
 
-export const getTableData = (value) => ({
-  type: 'GET_TABLE_DATA',
-  selectedEnv: value
-});
+export const handleLoadingStatus = () => ({
+    type: 'HANDLE_LOADING_STATUS'
+  });
+

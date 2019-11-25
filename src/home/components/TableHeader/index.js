@@ -36,11 +36,13 @@ class Header extends React.Component {
 
   render() {
     const { defaultEnv } = this.state;
-    console.log(defaultEnv, 'enc');
+    const {
+      defaultState: { loadingStatus }
+    } = this.props;
+    console.log(this.props, 'enc');
 
     return (
       <div className='header'>
-        {/* <Spin spinning={spinStatus}></Spin> */}
         <Select
           style={{ width: 200 }}
           placeholder='请选择打包环境'
@@ -60,6 +62,15 @@ class Header extends React.Component {
         >
           生成
         </Button>
+        <Spin
+          className='spin-wrap'
+          style={{
+            height: window.innerHeight,
+            marginTop: -window.innerHeight / 2,
+            lineHeight: window.innerHeight + 'px'
+          }}
+          spinning={loadingStatus}
+        ></Spin>
       </div>
     );
   }
@@ -72,16 +83,17 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+
   handleGenerateBtn(env) {
     console.log(env);
+    dispatch({type: 'HANDLE_LOADING_STATUS'})
     dispatch({ type: 'GENERATE_FILE', payload: { env, branch: 'master' } });
   },
 
   handleGetTableData() {
-    dispatch({ type: 'USER_FETCH_REQUESTED', payload: '' });
-    //  console.log(res)
+    dispatch({ type: 'HANDLE_LOADING_STATUS' });
+    dispatch({ type: 'GET_TABLE_DATA', payload: '' });
   }
-  // console.log(res)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
