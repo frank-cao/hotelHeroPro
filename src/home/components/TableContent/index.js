@@ -61,7 +61,7 @@ class TableContent extends React.Component {
     const { tableList } = this.props.state;
     return (
       <div className='table'>
-        <Table columns={this.columns} dataSource={tableList} />
+        <Table columns={this.columns} dataSource={tableList} rowKey={record => record.time + 'TestPack'} />
       </div>
     );
   }

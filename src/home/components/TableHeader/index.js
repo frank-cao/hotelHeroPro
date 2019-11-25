@@ -15,7 +15,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultEnv: ''
+      defaultEnv: undefined
     };
   }
 
@@ -43,7 +43,7 @@ class Header extends React.Component {
 
   render() {
     // 获取当前环境 loading状态
-    const { defaultEnv = '' } = this.state;
+    const { defaultEnv } = this.state;
     const {
       defaultState: { loadingStatus }
     } = this.props;
