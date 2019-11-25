@@ -1,10 +1,12 @@
 
-// module.exports = function override(config, env) {
-//   // do stuff with the webpack config...
-//   return config;
-// };
 
-//  const { override, fixBabelImports } = require('customize-cra');
+/*
+  auth: frank
+  date: 
+*/
+
+
+//  高阶组件进行antd引入优化
  const {
    override,
    fixBabelImports,

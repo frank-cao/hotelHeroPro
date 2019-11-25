@@ -1,3 +1,8 @@
+/*
+  auth: frank
+  date: 
+*/
+
 // react-redux
 import reducer from './reducers'
 import { createStore, applyMiddleware } from 'redux';

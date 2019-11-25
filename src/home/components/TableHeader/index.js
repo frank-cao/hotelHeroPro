@@ -1,3 +1,8 @@
+/*
+  auth: frank
+  date: 
+*/
+
 import React from 'react';
 import { Button, Select, Spin } from 'antd';
 
@@ -38,23 +43,20 @@ class Header extends React.Component {
 
   render() {
     // 获取当前环境 loading状态
-    const { defaultEnv } = this.state;
+    const { defaultEnv = '' } = this.state;
     const {
       defaultState: { loadingStatus }
     } = this.props;
-    // console.log(this.props, 'enc');
 
     return (
       <div className='header'>
         {/* 项目名称 */}
-        <div className="project-name">
-          酒店英雄小程序
-        </div>
+        <div className='project-name'>酒店英雄小程序</div>
         {/* 环境 */}
         <Select
           style={{ width: 200 }}
+          value={defaultEnv}
           placeholder='请选择打包环境'
-          defaultValue={defaultEnv}
           onChange={this.handleChange}
         >
           <Option value='test'>打包环境: test</Option>

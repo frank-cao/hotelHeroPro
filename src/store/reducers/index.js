@@ -1,4 +1,9 @@
-// reduces
+/*
+  auth: frank
+  date: 
+*/
+
+// reduce进行state处理
 
 // 默认值
 const defaultState = {
@@ -7,7 +12,6 @@ const defaultState = {
 };
 
 export default (state = defaultState, actions) => {
-  // console.log(defaultState, state, actions)
   const { type} = actions
 
   // loading状态设置为true
@@ -18,7 +22,6 @@ export default (state = defaultState, actions) => {
 
   // 表格数据获取成功处理
   if (type === 'GET_TABLE_DATA_SUCCESS') {
-    // console.log(actions, 'successReduce');
     const { user = [] } = actions;
     state.tableList = user;
     state.loadingStatus = false;
