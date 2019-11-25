@@ -1,5 +1,9 @@
-// setupProxy中间件
-// ng代理解决跨域问题
+/*
+  auth: frank
+  date: 
+*/
+
+// 引入setupProxy中间件、 ng代理解决跨域问题
 
 const proxy = require('http-proxy-middleware')
 

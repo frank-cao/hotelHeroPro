@@ -1,9 +1,16 @@
+/*
+  auth: frank.cao
+  date: ''
+  email: ''
+*/
+
 import React from 'react';
 import { Table, Button } from 'antd';
 import { connect } from 'react-redux';
 import './index.scss';
 
 class TableContent extends React.Component {
+  // 表头
   columns = [
     {
       title: 'branch',
@@ -41,6 +48,7 @@ class TableContent extends React.Component {
     }
   ];
 
+  // 下载
   handleDownloadBtn = (record, index) => {
     // console.log(record, index, '====');
     const host = 'http://192.168.90.134:7001';
@@ -60,7 +68,6 @@ class TableContent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state, 'state---')
   return {
     state
   };

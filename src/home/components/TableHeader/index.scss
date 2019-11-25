@@ -2,7 +2,11 @@
 @import '~antd/dist/antd.css';
 
 .header {
-  margin-bottom: 100px;
+  margin-bottom: 40px;
+  .project-name {
+    font-weight: bolder;
+    margin-bottom: 10px;
+  }
   .generate-btn {
     margin-left: 20px;
   }

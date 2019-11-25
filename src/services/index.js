@@ -1,4 +1,4 @@
-// services 请求
+// services 接口请求
 
 const axios = require('axios');
 
@@ -18,8 +18,8 @@ export function getTableData() {
   });
 }
 
+// 生成文件
 export function generateFile(params) {
-  // console.log(params, 'params');
   const { env = '', branch = '' } = params;
   return new Promise((resolve, reject) => {
     axios

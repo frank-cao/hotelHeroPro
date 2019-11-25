@@ -1,3 +1,9 @@
+/*
+  auth: frank.cao
+  date: ''
+  email: ''
+*/
+
 import React from 'react';
 import TableHeader from './components/TableHeader'
 import TableContent from './components/TableContent'
@@ -11,6 +17,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
+        <div className="home-title">测试自动打包工具系统</div>
         <Provider store={store} >
           <TableHeader></TableHeader>
           <TableContent></TableContent>

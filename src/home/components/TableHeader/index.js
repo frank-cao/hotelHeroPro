@@ -15,11 +15,12 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    // 获取tableData
     const { handleGetTableData } = this.props;
-    // const { defaultEnv } = this.state;
     handleGetTableData();
   }
 
+  // 获取当前环境
   handleChange = value => {
     console.log(value);
     this.setState({
@@ -28,6 +29,7 @@ class Header extends React.Component {
     });
   };
 
+  // 改变loading状态同时生成文件
   handleChangeSpinStatus = () => {
     const { handleGenerateBtn } = this.props;
     const { defaultEnv } = this.state;
@@ -35,24 +37,31 @@ class Header extends React.Component {
   };
 
   render() {
+    // 获取当前环境 loading状态
     const { defaultEnv } = this.state;
     const {
       defaultState: { loadingStatus }
     } = this.props;
-    console.log(this.props, 'enc');
+    // console.log(this.props, 'enc');
 
     return (
       <div className='header'>
+        {/* 项目名称 */}
+        <div className="project-name">
+          酒店英雄小程序
+        </div>
+        {/* 环境 */}
         <Select
           style={{ width: 200 }}
           placeholder='请选择打包环境'
           defaultValue={defaultEnv}
           onChange={this.handleChange}
         >
-          <Option value='develop'>develop</Option>
-          <Option value='release-test'>release-test</Option>
-          <Option value='release-prod'>release-prod</Option>
+          <Option value='test'>打包环境: test</Option>
+          <Option value='uat'>打包环境: uat</Option>
+          <Option value='build'>打包环境: build</Option>
         </Select>
+        {/* 生成按钮 */}
         <Button
           type='primary'
           className='generate-btn'
@@ -62,6 +71,7 @@ class Header extends React.Component {
         >
           生成
         </Button>
+        {/* loading */}
         <Spin
           className='spin-wrap'
           style={{
@@ -76,20 +86,23 @@ class Header extends React.Component {
   }
 }
 
+// redux值获取
 const mapStateToProps = state => {
   return {
     defaultState: state
   };
 };
 
+// dispatch
 const mapDispatchToProps = dispatch => ({
 
+  // 生成文件
   handleGenerateBtn(env) {
-    console.log(env);
     dispatch({type: 'HANDLE_LOADING_STATUS'})
     dispatch({ type: 'GENERATE_FILE', payload: { env, branch: 'master' } });
   },
 
+  // 获取table数据
   handleGetTableData() {
     dispatch({ type: 'HANDLE_LOADING_STATUS' });
     dispatch({ type: 'GET_TABLE_DATA', payload: '' });

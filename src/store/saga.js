@@ -7,6 +7,7 @@ import {
 // import axios from ‘axios’
 import { getTableData, generateFile } from '../services';
 
+// 表格数据获取
 function* GetTableData() {
   try {
     const user = yield call(getTableData);
@@ -17,22 +18,21 @@ function* GetTableData() {
     });
     
   } catch (e) {
-    // console.error('')
-    // yield put({
-    //   type: "USER_FETCH_FAILED",
-    //   message: e.message
-    // });
+    
   }
 }
 
+// 生成文件
 function* GenerateFile (action) {
   try {
     const res = yield call(generateFile, action.payload)
-    console.log(res, 'generate')
+    // console.log(res, 'generate')
+    // 文件生成成功进行reduce处理
     yield put({
       type: 'GENERATE_FILE_SUCCESS',
       data: res.data
     })
+    // 文件生成成功再次请求表格数据
     yield GetTableData()
   } catch (error) {
     
