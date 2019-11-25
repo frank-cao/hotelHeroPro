@@ -52,7 +52,7 @@ class Header extends React.Component {
           <Option value='release-test'>release-test</Option>
           <Option value='release-prod'>release-prod</Option>
         </Select>
-        <Button type="primary" className="search-btn" onClick={() => {handleGetTableData(defaultEnv)}}>搜索</Button>
+        <Button type="primary" className="search-btn" onClick={() => {handleGetTableData(defaultEnv)}}>生成</Button>
       </div>
     );
   }

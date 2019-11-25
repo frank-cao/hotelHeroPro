@@ -7,7 +7,7 @@ export function fetchJson() {
   return new Promise((resolve, reject) => {
     // console.log(axios, 'axios')
     axios
-      .get('/pms/list', {
+      .get('/testPackage/list', {
         timeout: 300000
       })
       .then(res => {
