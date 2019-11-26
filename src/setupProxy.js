@@ -3,7 +3,7 @@
   date: 
 */
 
-// 引入setupProxy中间件、 ng代理解决跨域问题
+// 引入setupProxy中间件、 解决跨域问题
 
 const proxy = require('http-proxy-middleware')
 

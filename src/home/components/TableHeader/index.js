@@ -4,18 +4,29 @@
 */
 
 import React from 'react';
-import { Form, Row, Col, Button, Select, Spin } from 'antd';
+import { Form, Row, Col, Button, Select, Spin, Modal } from 'antd';
 
 import { connect } from 'react-redux';
 import './index.scss';
 
 const { Option } = Select;
 
+const formItemLayout = {
+  labelCol: {
+    span: 6, offset: 0
+  },
+  wrapperCol: {
+    span: 18, offset: 0
+  }
+};
+
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultEnv: 'build'
+      defaultEnv: 'build',
+      visibleStatus: false
     };
   }
 
@@ -41,25 +52,42 @@ class Header extends React.Component {
     handleGenerateBtn(defaultEnv);
   };
 
-  // 清空数据
+  // 清空数据确认弹框
   handleClearBtn = () => {
+    this.setState({
+      ...this.state,
+      visibleStatus: true
+    });
+  };
+
+  // 确认清空数据
+  handleOk = () => {
     const { handleClearDataBtn } = this.props;
     handleClearDataBtn();
+     this.setState({
+       ...this.state,
+       visibleStatus: false
+     });
+  };
+
+  // 取消清空数据
+  handleCancel = () => {
+    this.setState({
+      ...this.state,
+      visibleStatus: false
+    });
   }
 
   render() {
     // 获取当前环境 loading状态
-    const { defaultEnv } = this.state;
+    const { defaultEnv, visibleStatus } = this.state;
     const {
       defaultState: { loadingStatus }
     } = this.props;
 
     return (
       <div className='header'>
-        <Form
-          labelCol={{ span: 4, offset: 0 }}
-          wrapperCol={{ span: 20, offset: 0 }}
-        >
+        <Form {...formItemLayout} className='ant-advanced-search-form'>
           <Row gutter={24}>
             <Col span={6}>
               <Form.Item label='项目名称' labelAlign={'left'}>
@@ -85,7 +113,7 @@ class Header extends React.Component {
                 </Select>
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={5}>
               <Form.Item>
                 <Button
                   type='primary'
@@ -98,7 +126,7 @@ class Header extends React.Component {
                 </Button>
 
                 <Button
-                  type='primary'
+                  type='danger'
                   className='clear-btn'
                   onClick={() => {
                     this.handleClearBtn();
@@ -111,6 +139,18 @@ class Header extends React.Component {
           </Row>
         </Form>
         {/* 项目名称 */}
+
+        {/* modal */}
+        <Modal
+          title='清空数据'
+          visible={visibleStatus}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          okText='确认'
+          cancelText='取消'
+        >
+          <p>是否确定清空数据</p>
+        </Modal>
 
         {/* loading */}
         <Spin
