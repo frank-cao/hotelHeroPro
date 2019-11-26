@@ -4,7 +4,7 @@
 */
 
 import React from 'react';
-import { Button, Select, Spin } from 'antd';
+import { Form, Row, Col, Button, Select, Spin } from 'antd';
 
 import { connect } from 'react-redux';
 import './index.scss';
@@ -15,7 +15,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultEnv: undefined
+      defaultEnv: 'build'
     };
   }
 
@@ -41,6 +41,12 @@ class Header extends React.Component {
     handleGenerateBtn(defaultEnv);
   };
 
+  // 清空数据
+  handleClearBtn = () => {
+    const { handleClearDataBtn } = this.props;
+    handleClearDataBtn();
+  }
+
   render() {
     // 获取当前环境 loading状态
     const { defaultEnv } = this.state;
@@ -50,29 +56,62 @@ class Header extends React.Component {
 
     return (
       <div className='header'>
+        <Form
+          labelCol={{ span: 4, offset: 0 }}
+          wrapperCol={{ span: 20, offset: 0 }}
+        >
+          <Row gutter={24}>
+            <Col span={6}>
+              <Form.Item label='项目名称' labelAlign={'left'}>
+                <Select
+                  value={'hotelHero'}
+                  placeholder='请选择项目'
+                  onChange={this.handleChange}
+                >
+                  <Option value='hotelHero'>酒店英雄小程序</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={6}>
+              <Form.Item label='打包环境' labelAlign={'left'}>
+                <Select
+                  value={defaultEnv}
+                  placeholder='请选择打包环境'
+                  onChange={this.handleChange}
+                >
+                  <Option value='test'>test</Option>
+                  <Option value='uat'>uat</Option>
+                  <Option value='build'>build</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={6}>
+              <Form.Item>
+                <Button
+                  type='primary'
+                  className='generate-btn'
+                  onClick={() => {
+                    this.handleChangeSpinStatus();
+                  }}
+                >
+                  生成
+                </Button>
+
+                <Button
+                  type='primary'
+                  className='clear-btn'
+                  onClick={() => {
+                    this.handleClearBtn();
+                  }}
+                >
+                  清空
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
         {/* 项目名称 */}
-        <div className='project-name'>酒店英雄小程序</div>
-        {/* 环境 */}
-        <Select
-          style={{ width: 200 }}
-          value={defaultEnv}
-          placeholder='请选择打包环境'
-          onChange={this.handleChange}
-        >
-          <Option value='test'>打包环境: test</Option>
-          <Option value='uat'>打包环境: uat</Option>
-          <Option value='build'>打包环境: build</Option>
-        </Select>
-        {/* 生成按钮 */}
-        <Button
-          type='primary'
-          className='generate-btn'
-          onClick={() => {
-            this.handleChangeSpinStatus();
-          }}
-        >
-          生成
-        </Button>
+
         {/* loading */}
         <Spin
           className='spin-wrap'
@@ -108,7 +147,13 @@ const mapDispatchToProps = dispatch => ({
   handleGetTableData() {
     dispatch({ type: 'HANDLE_LOADING_STATUS' });
     dispatch({ type: 'GET_TABLE_DATA', payload: '' });
-  }
+  },
+
+  // 清空table数据
+  handleClearDataBtn() {
+    dispatch({ type: 'HANDLE_LOADING_STATUS' });
+    dispatch({ type: 'CLEAR_TABLE_DATA', payload: '' });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

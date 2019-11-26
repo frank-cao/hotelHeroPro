@@ -2,7 +2,7 @@
   auth: frank
   date: 
 */
-
+import { message } from 'antd';
 import {
   call,
   put,
@@ -10,7 +10,7 @@ import {
 } from 'redux-saga/effects'
 
 // import axios from ‘axios’
-import { getTableData, generateFile } from '../services';
+import { getTableData, generateFile, clearTableData } from '../services';
 
 // 表格数据获取
 function* GetTableData() {
@@ -24,6 +24,18 @@ function* GetTableData() {
     
   } catch (e) {
     
+  }
+}
+
+// 清空数据接口
+function* ClearTableData() {
+  try {
+    yield call(clearTableData)
+    message.success('清空成功');
+     // 数据清空后再次请求表格数据
+    yield GetTableData()
+  } catch (error) {
+    message.error('清空数据失败')
   }
 }
 
@@ -51,6 +63,7 @@ function* GenerateFile (action) {
 function* mySaga() {
   yield takeEvery("GET_TABLE_DATA", GetTableData);
   yield takeEvery('GENERATE_FILE', GenerateFile);
+  yield takeEvery('CLEAR_TABLE_DATA', ClearTableData)
 }
 
 

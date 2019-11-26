@@ -2,13 +2,17 @@
 @import '~antd/dist/antd.css';
 
 .header {
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   .project-name {
     font-weight: bolder;
     margin-bottom: 10px;
   }
   .generate-btn {
     margin-left: 20px;
+  }
+  .clear-btn {
+    margin-left: 10px;
   }
   .spin-wrap {
     position: absolute;

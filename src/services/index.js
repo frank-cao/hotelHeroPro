@@ -36,3 +36,19 @@ export function generateFile(params) {
       .catch(err => {});
   });
 }
+
+// 清空table数据
+export function clearTableData() {
+  return new Promise((resolve, reject) => {
+    axios
+      .get('/testPackage/delete', {
+        timeout: 30000
+      })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        // console.log(error, 'error----');
+      });
+  });
+}
