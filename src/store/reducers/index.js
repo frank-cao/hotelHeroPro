@@ -27,6 +27,11 @@ export default (state = defaultState, actions) => {
     state.loadingStatus = false;
     return { ...state };
   }
+  
+  if (type === 'STATUS_FAIL') {
+    state.loadingStatus = false;
+    return { ...state };
+  }
 
   // 文件生成成功数据状态处理
   if (type === 'GENERATE_FILE_SUCCESS') {
