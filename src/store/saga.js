@@ -23,7 +23,9 @@ function* GetTableData() {
     });
     
   } catch (e) {
-    
+    yield put({
+      type: "STATUS_FAIL"
+    });
   }
 }
 
@@ -36,6 +38,9 @@ function* ClearTableData() {
     yield GetTableData()
   } catch (error) {
     message.error('清空数据失败')
+    yield put({
+      type: "STATUS_FAIL"
+    });
   }
 }
 
@@ -52,7 +57,9 @@ function* GenerateFile (action) {
     // 文件生成成功再次请求表格数据
     yield GetTableData()
   } catch (error) {
-    
+    yield put({
+      type: "STATUS_FAIL"
+    });
   }
 }
 
