@@ -12,7 +12,7 @@ export function getTableData() {
   return new Promise((resolve, reject) => {
     axios
       .get('/testPackage/list', {
-        timeout: 30000
+        timeout: 3000000
       })
       .then(res => {
         resolve(res);
@@ -42,7 +42,7 @@ export function clearTableData() {
   return new Promise((resolve, reject) => {
     axios
       .get('/testPackage/delete', {
-        timeout: 30000
+        timeout: 3000000
       })
       .then(res => {
         resolve(res);
